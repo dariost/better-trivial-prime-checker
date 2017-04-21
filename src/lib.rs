@@ -81,11 +81,7 @@ pub fn is_prime(n: usize) -> bool
 #[allow(dead_code)]
 fn is_prime_trivial(n: usize) -> bool
 {
-    if n < 2
-    {
-        return false;
-    }
-    (2..).take_while(|x| x * x <= n).all(|x| n % x != 0)
+    n > 1 && (2..).take_while(|x| x * x <= n).all(|x| n % x != 0)
 }
 
 #[test]
