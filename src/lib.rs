@@ -73,14 +73,9 @@ pub fn is_prime(n: usize) -> bool
         }
     }
     let num_mask: Vec<usize> = (0..mask.len()).filter(|&x| mask[x]).collect();
-    for i in (1..).take_while(|x| x * mask.len() <= search_bound)
-    {
-        if num_mask.iter().any(|x| n % (i * mask.len() + x) == 0)
-        {
-            return false;
-        }
-    }
-    true
+    !(1..)
+         .take_while(|x| x * mask.len() <= search_bound)
+         .any(|i| num_mask.iter().any(|x| n % (i * mask.len() + x) == 0))
 }
 
 #[allow(dead_code)]
